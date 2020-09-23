@@ -32,7 +32,7 @@ max_ttl = 600
 
 [network]
 # Max number of UDP ports to use for outgoing connections, up to 64511
-udp_ports = 5
+udp_ports = 1000
 
 # Listen address
 listen = "0.0.0.0:5353"

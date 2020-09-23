@@ -6,6 +6,7 @@ A docker image for [edgedns](https://github.com/jedisct1/edgedns).
 
 * use edgedns 0.2.2 release.
 * Run as non root.
+* Expose tcp and udp port 5353.
 
 ## Build docker image
 
