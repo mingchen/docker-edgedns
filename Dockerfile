@@ -19,6 +19,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && \
     apt-get update && \
     apt-get install --no-install-recommends -y \
         ca-certificates \
+        net-tools \
         wget && \
     dpkgArch="$(dpkg --print-architecture | awk -F- '{ print $NF }')"; \
 	wget -q "https://github.com/tianon/gosu/releases/download/$GOSU_VERSION/gosu-$dpkgArch" -O /usr/local/bin/gosu && \
@@ -42,6 +43,13 @@ WORKDIR $WORKDIR
 
 ADD docker-entrypoint.sh /
 ADD etc/edgedns.toml /etc/edgedns.toml
+
+# Check UDP port is open
+HEALTHCHECK --interval=10s \
+    --timeout=5s \
+    --start-period=5s \
+    --retries=3 \
+    CMD netstat -nau | grep -w 5353 > /dev/null; if [ 0 != $? ]; then exit 1; fi;
 
 ENTRYPOINT ["/docker-entrypoint.sh"]
 
