@@ -1,6 +1,7 @@
 # Docker for edgedns
 
 [![docker icon](https://dockeri.co/image/mingc/edgedns)](https://hub.docker.com/r/mingc/edgedns/)
+[![Docker Image CI](https://github.com/mingchen/docker-edgedns/actions/workflows/docker-image.yml/badge.svg)](https://github.com/mingchen/docker-edgedns/actions/workflows/docker-image.yml)
 
 A docker image for [edgedns](https://github.com/jedisct1/edgedns), a high performance DNS cache.
 
@@ -10,11 +11,24 @@ A docker image for [edgedns](https://github.com/jedisct1/edgedns), a high perfor
 * Run as non root.
 * Expose tcp and udp port 5353 (because of non-root).
 * Health check by UDP port is alive.
+* Use `debian:buster-slim` as base image.
 
 ## Build docker image
 
 ```sh
 make
+```
+
+or
+
+```sh
+docker build -t mingc/edgedns .
+```
+
+## Pull image from docker hub
+
+```sh
+docker pull mingc/edgedns
 ```
 
 ## Run
